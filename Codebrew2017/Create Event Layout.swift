@@ -137,7 +137,18 @@ class Create_Event_Layout: UIViewController, UITextFieldDelegate {
             }
         })
         
+        let alert = UIAlertController(title: "EventCreated", message: "New event has been created!", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        typeOfSport.text = " "
+        playerNumber.text = " "
+        location.text = " "
+        //location.placeholder = " time"
+        date.text = " "
+        cost.text = " "
+        
+        
     }
-
+    
     
 }

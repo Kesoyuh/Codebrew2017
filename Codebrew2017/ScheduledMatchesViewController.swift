@@ -34,8 +34,7 @@ class ScheduledMatchesViewController: UIViewController, UITableViewDelegate,  UI
         refreshControl?.addTarget(self, action: #selector(MatchesViewController.refreshData), for: UIControlEvents.valueChanged)
         scheduledMatchesTableView.addSubview(self.refreshControl)
         
-        //load data
-        refreshData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,6 +47,12 @@ class ScheduledMatchesViewController: UIViewController, UITableViewDelegate,  UI
         navigationController?.hidesBarsOnSwipe = false
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //load data
+        refreshData()
+    }
+    
     
     func refreshData() {
         self.games = [Game]()

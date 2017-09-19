@@ -16,6 +16,7 @@ class Match_Detail_Layout: UIViewController, UITableViewDelegate,  UITableViewDa
 
     @IBOutlet weak var tableView: UITableView!
     
+    var refreshControl: UIRefreshControl!
     var payersId = [String]()
     var players = [Player]()
     var confirmedPlayers = [String]()
@@ -27,9 +28,18 @@ class Match_Detail_Layout: UIViewController, UITableViewDelegate,  UITableViewDa
         // Do any additional setup after loading the view.
         firebaseReference = FIRDatabase.database().reference()
         
+        // Pull To Refresh Control
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = UIColor.white
+        refreshControl?.tintColor = UIColor.gray
+        refreshControl?.addTarget(self, action: #selector(self.refreshData), for: UIControlEvents.valueChanged)
+        tableView.addSubview(self.refreshControl)
+        
         //load data
         refreshData()
     }
+    
+    
     
     func refreshData() {
         self.players = [Player]()
@@ -147,6 +157,7 @@ class Match_Detail_Layout: UIViewController, UITableViewDelegate,  UITableViewDa
 //        }) { (error) in
 //            print(error.localizedDescription)
 //        }
+        refreshControl.endRefreshing()
     }
     
     //MARK: - TableView DataSource
@@ -235,4 +246,5 @@ class Match_Detail_Layout: UIViewController, UITableViewDelegate,  UITableViewDa
             }
         }
     }
+    
 }

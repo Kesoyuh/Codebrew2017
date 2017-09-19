@@ -25,7 +25,8 @@ class RatePlayerViewController: UIViewController {
     @IBAction func ratePlayer(_ sender: Any) {
         
         player.numberOfRatings = player.numberOfRatings! + 1
-        player.rating = player.rating! + Float(self.ratingControl.playerRating/player.numberOfRatings!)
+        //player.rating = player.rating! + Float(self.ratingControl.playerRating/player.numberOfRatings!)
+        player.rating = (Float((player.numberOfRatings!-1))*player.rating! + Float(self.ratingControl.playerRating))/Float(player.numberOfRatings!)
         let playerRating = String(format:"%.1f", player.rating!)
         let ratingNumber = String(format:"%d", player.numberOfRatings!)
         
